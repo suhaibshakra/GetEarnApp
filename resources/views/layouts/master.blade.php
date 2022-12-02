@@ -1,6 +1,23 @@
-@extends('layouts.master')
+<!DOCTYPE html>
+<html lang="en">
 
-@section('content')
+	@include('layouts.head')
+
+<body>
+
+	<!-- ***** Preloader Start ***** -->
+	<div class="preloader-wrapper">
+		<div class="slice"></div>
+		<div class="slice"></div>
+		<div class="slice"></div>
+		<div class="slice"></div>
+		<div class="slice"></div>
+		<div class="slice"></div>
+	</div>
+	<!-- ***** Preloader End ***** -->
+	
+
+    @yield('content')
 	
 	<!-- ***** Header Area Start ***** -->
 	<header class="header-area">
@@ -607,4 +624,7 @@
 		</div>
 	</section>
 	<!-- ***** Blog End ***** -->
-@endsection
+
+	@include('layouts.footer')
+</body>
+</html>
