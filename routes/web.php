@@ -23,13 +23,13 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
     /**
      * Home Routes
      */
-    Route::get('/', 'HomeController@index')->name('home.index');
+    Route::get('/', 'HomeController')->name('home.index');
 
     Route::group(['middleware' => ['guest']], function() {
         /**
          * Register Routes
          */
-        Route::get('/register', 'RegisterController@show')->name('register.show');
+        Route::get('/register', 'RegisterController@show')->name('register.show')->middleware('countNumberOfVisit');
         Route::post('/register', 'RegisterController@register')->name('register.perform');
 
         /**
@@ -44,6 +44,10 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
         /**
          * Logout Routes
          */
-        Route::get('/logout', 'LogoutController@perform')->name('logout.perform');
+        Route::get('/logout', 'LogoutController')->name('logout.perform');
+        Route::get('/dashboard', 'DashboardController')->name('dashboard');
+        Route::get('/clients', 'ClientsController')->name('clients');
+        
+        Route::resource('users', 'UsersController');
     });
 });

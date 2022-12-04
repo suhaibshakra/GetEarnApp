@@ -24,7 +24,7 @@ class RegisterRequest extends FormRequest
     public function rules()
     {
         return [
-            'avatar' => 'required|mimes:jpeg,jpg,png,gif|max:5000',
+            'avatar' => 'required|max:5000',
             'email' => 'required|email:rfc,dns|unique:users,email',
             'name' => 'required|min:3',
             'phone_number' => 'required|numeric|min:6|unique:users,phone_number',
@@ -32,5 +32,14 @@ class RegisterRequest extends FormRequest
             'password' => 'required|min:8',
             'password_confirmation' => 'required|same:password'
         ];
+    }
+
+    protected function passedValidation()
+    {
+        if ($this->has('ref')) {
+            $this->merge(
+                ['ref' => $this->input('ref')]
+            );
+        }
     }
 }

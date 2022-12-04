@@ -3,14 +3,18 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+
+use App\Traits\HasReferral;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Hash;
 use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable, HasReferral;
 
     /**
      * The attributes that are mass assignable.
@@ -44,4 +48,30 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
+    public function setPasswordAttribute($value)
+    {
+         if (Hash::needsRehash($value)) {
+             $value = Hash::make($value);
+         }
+    
+         $this->attributes['password'] = $value;
+    }
+    /**
+     * A model may have multiple roles.
+     */
+    public function roles(): BelongsToMany
+    {
+        return $this->morphToMany(
+            Role::class,
+            'model',
+            'model_has_roles',
+            'model_id',
+            'role_id'
+        );
+    }
+
+
+
 }

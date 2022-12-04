@@ -1524,7 +1524,7 @@ pricing
   color: #3B566E;
   position: absolute;
   width: 100%;
-  top: 50%;
+  top: 30%;
   transform: perspective(1px) translateY(-50%);
 }
 .pricing-item .pricing-header .number-hexagon {
@@ -1532,7 +1532,7 @@ pricing
   height: 28px;
   background: #E1F5F4;
   position: relative;
-  bottom: -115px;
+  bottom: -80px;
   margin: auto;
 }
 .pricing-item .pricing-header .number-hexagon:before {
@@ -2060,6 +2060,7 @@ pages
 */
 .page {
   background: #fff;
+  min-height: 100vh
 }
 .page .cover {
   margin-top: 80px;
@@ -2579,8 +2580,8 @@ contact
 
 .contact-bottom {
   border-top: 1px solid #f5f5f5;
-  margin-top: 60px;
-  padding-top: 60px;
+  margin-top: 40px;
+  padding-top: 40px;
 }
 .contact-bottom .contact-text {
   font-weight: 400;
