@@ -31,7 +31,9 @@
                     @else
                     <li><a href="/dashboard">Dashboard</a></li>
                     <li><a href="/clients">My Clients</a></li>
+                    @if(Auth::user()->isAdmin())
                     <li><a href="/users">Users</a></li>
+                    @endif
                     <li>
                         <a  class="btn-nav-line" href="{{ route('logout.perform') }}">Logout</a>
                     </li>

@@ -72,6 +72,14 @@ class User extends Authenticatable
         );
     }
 
+    public function isAdmin()
+    {
+        $admin_role = Role::where('name','admin')->first();
+        
+        return $this->roles()->where('role_id',  $admin_role->id)->count() > 0;
+    }
+    
+
 
 
 }

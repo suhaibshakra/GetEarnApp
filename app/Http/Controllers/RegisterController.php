@@ -28,8 +28,17 @@ class RegisterController extends Controller
      */
     public function register(RegisterRequest $request) 
     {
-        $user = User::create($request->validated());
-       
+        $inputs = $request->validated();
+  
+        if ($request->hasFile('avatar')) {
+            // Public Folder
+            $imageName = time().'.'.$request->avatar->extension();
+            $request->avatar->move(public_path('images'), $imageName);
+            $inputs['avatar'] = $imageName;
+        }
+
+        $user = User::create($inputs);
+
         $role_user =  Role::where('name', 'user')->first();
 
         $user->roles()->save($role_user);

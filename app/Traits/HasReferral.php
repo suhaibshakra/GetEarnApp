@@ -21,8 +21,8 @@ trait HasReferral
         parent::boot();
 
         static::creating(function ($model) {
-            if(request()->ref){
-               $user_referred_by = static::referral(request()->ref)->first();
+            if(request()?->get('ref')){
+               $user_referred_by = static::referral(request()?->get('ref'))->first();
                $model->referred_by = $user_referred_by?->id;
             }
             $model->referrer_code = self::generateReferral();
@@ -30,7 +30,8 @@ trait HasReferral
 
         static::created(function ($model) {
             if($model->referred_by){
-                $model->increment('earned_points',self::calculate_earn_points(self::find($model->referred_by)->referralCount())); 
+                $referred_by = self::find($model->referred_by);
+                $referred_by->increment('earned_points',self::calculate_earn_points($referred_by->referralCount())); 
             }
         });
     }

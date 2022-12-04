@@ -20,12 +20,12 @@
                             <div class="col-lg-8 col-md-6 col-sm-12">
                                 <div class="contact-form">
                                     <div class="row">
-                                        <form method="post" action="{{ route('register.perform') }}">
+                                        <form method="post" action="{{ route('register.perform') }}" enctype="multipart/form-data">
                                             @csrf
                                             <input type="hidden" name="ref" value="{{request()->ref}}" />
                                             <div class="col-lg-6 col-md-12 col-sm-12">
                                                 <label for="floatingBirthDate">Avatar</label>
-                                                <input type="file" required="required" class="form-control" name="avatar" value="{{ old('avatar') }}" placeholder="Avatar" autofocus>
+                                                <input type="file" required="required" class="form-control" name="avatar" value="{{ old('avatar') }}" placeholder="Avatar" >
                                                 @if ($errors->has('avatar'))
                                                     <span class="text-danger text-left">{{ $errors->first('avatar') }}</span>
                                                 @endif
@@ -47,7 +47,7 @@
                                             </div>
                                             <div class="col-lg-12">
                                                 <label for="floatingName">Birth Date</label>
-                                                <input type="date" class="form-control" name="birth_date" value="{{ old('birth_date') }}" placeholder="birth_date" required="required" autofocus>
+                                                <input type="date" class="form-control" name="birth_date" value="{{ old('birth_date') }}" placeholder="birth_date" >
                                                 @if ($errors->has('birth_date'))
                                                     <span class="text-danger text-left">{{ $errors->first('birth_date') }}</span>
                                                 @endif

@@ -18,7 +18,7 @@ class UserReferralResource extends JsonResource
         return [
             'name' => $this->name,
             'value' => $this->id,
-            'image' => "https://s3-us-west-2.amazonaws.com/s.cdpn.io/t-160/icon_firefox.svg",
+            'image' => $this->avatar ?  ("/images/{$this->avatar}") : "https://www.pngfind.com/pngs/m/676-6764065_default-profile-picture-transparent-hd-png-download.png",
             'children' => UserReferralResource::collection($this->referrals),
         ];
     }
