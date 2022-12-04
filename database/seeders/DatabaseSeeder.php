@@ -48,7 +48,7 @@ class DatabaseSeeder extends Seeder
                 'name'        => 'user ' . $i,
                 'phone_number'         => '77000000' . $i,
                 'birth_date'         => '1993-04-10',
-                'email'             => $i.'admin@admin.com',
+                'email'             => $i.'user@user.com',
                 'referred_by'             => $admin->id,
                 'password'          => Hash::make('12345678'),
             ]);
@@ -59,7 +59,7 @@ class DatabaseSeeder extends Seeder
                     'name'        => 'user ' . $i.$x,
                     'phone_number'      => '7800000' . $i.$x,
                     'birth_date'        => '1993-04-10',
-                    'email'             =>  $i . $x .'admin@admin.com',
+                    'email'             =>  $i . $x .'user@user.com',
                     'referred_by'       => $master_user->id,
                     'password'          => Hash::make('12345678'),
                 ]);
